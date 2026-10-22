@@ -4,8 +4,9 @@ on:
   push:
     branches:
     - main
-  schedule:
-    - cron: '0 7 * * 1-5'
+
+permissions:
+  contents: write
 
 jobs:
   build-deploy:
@@ -34,7 +35,7 @@ jobs:
         extended: true
 
     - name: Build website
-      run: hugo --minify
+      run: hugo --minify --baseURL https://preview.insileco.io/
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v4
